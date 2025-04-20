@@ -1,3 +1,5 @@
+import API_BASE_URL from './config.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   const modeToggle = document.getElementById('mode-toggle');
   const htmlEl = document.documentElement;
@@ -159,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     try {
-      const response = await fetch('/api/shorten', {
+      const response = await fetch(`${API_BASE_URL}/shorten`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(payload)
@@ -188,3 +190,4 @@ document.addEventListener('DOMContentLoaded', () => {
     document.execCommand('copy');
   });
 });
+</create_file>
