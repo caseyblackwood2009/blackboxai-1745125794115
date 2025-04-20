@@ -1,3 +1,5 @@
+import API_BASE_URL from './config.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   const loginSection = document.getElementById('login-section');
   const dashboardSection = document.getElementById('dashboard-section');
@@ -109,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     try {
-      const response = await fetch('/api/admin/update', {
+      const response = await fetch(`${API_BASE_URL}/admin/update`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({password, short_code, action, value})
@@ -134,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     try {
-      const response = await fetch('/api/admin', {
+      const response = await fetch(`${API_BASE_URL}/admin`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({password})
@@ -161,3 +163,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   loginButton.addEventListener('click', loadLinks);
 });
+</create_file>
