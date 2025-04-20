@@ -1,0 +1,235 @@
+/* Reset and base styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f9fafb;
+  color: #111827;
+  height: 100%;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+html.dark {
+  background-color: #1f2937;
+  color: #f9fafb;
+}
+
+.container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+/* Toggle switch */
+.toggle-switch {
+  width: 50px;
+  height: 24px;
+  background-color: #d1d5db;
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+}
+
+html.dark .toggle-switch {
+  background-color: #374151;
+}
+
+.toggle-thumb {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: left 0.3s;
+}
+
+html.dark .toggle-switch[aria-checked="true"] .toggle-thumb {
+  left: 28px;
+}
+
+/* Input-like divs */
+.input-like {
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.75rem;
+  min-height: 2rem;
+  outline: none;
+  cursor: text;
+  background-color: white;
+  color: #111827;
+  user-select: text;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+html.dark .input-like {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #f9fafb;
+}
+
+.input-like:empty:before {
+  content: attr(data-placeholder);
+  color: #9ca3af;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Checkbox-like divs */
+.checkbox-like {
+  display: inline-block;
+  padding: 0.4rem 0.75rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  background-color: white;
+  color: #111827;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+html.dark .checkbox-like {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #f9fafb;
+}
+
+.checkbox-like[aria-checked="true"] {
+  background-color: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+/* Dropdown-like */
+.dropdown-like {
+  display: inline-block;
+  position: relative;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 0.4rem 0.75rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+  background-color: white;
+  color: #111827;
+  min-width: 60px;
+}
+
+html.dark .dropdown-like {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #f9fafb;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 10;
+  width: 100%;
+}
+
+html.dark .dropdown-content {
+  background-color: #374151;
+  border-color: #4b5563;
+}
+
+.dropdown-content div {
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+}
+
+.dropdown-content div:hover {
+  background-color: #3b82f6;
+  color: white;
+}
+
+/* Show dropdown */
+.dropdown-like.open .dropdown-content {
+  display: block;
+}
+
+/* Button-like divs */
+.button-like {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #3b82f6;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  margin-top: 0.5rem;
+  text-align: center;
+  font-weight: 600;
+  user-select: none;
+  transition: background-color 0.3s;
+}
+
+.button-like:hover:not(.disabled) {
+  background-color: #2563eb;
+}
+
+.button-like.disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Textarea */
+textarea#output-textarea {
+  width: 100%;
+  height: 100px;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  resize: none;
+  font-family: monospace;
+  font-size: 0.9rem;
+  background-color: white;
+  color: #111827;
+}
+
+html.dark textarea#output-textarea {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #f9fafb;
+}
+
+/* Hidden sections */
+.input-section-hidden {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    margin: 1rem;
+    padding: 0.5rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+}
