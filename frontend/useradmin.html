@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>User Admin Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/style.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</head>
+<body>
+<div id="app" class="container">
+  <header>
+    <h1>User Admin Dashboard</h1>
+  </header>
+  <section id="login-section">
+    <div id="useradmin-password" class="input-like" contenteditable="true" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-placeholder="Enter User Admin Password"></div>
+    <div id="login-button" class="button-like">Login</div>
+    <div id="login-error" style="color: red; display: none; margin-top: 0.5rem;"></div>
+  </section>
+  <section id="dashboard-section" class="input-section-hidden">
+    <h2>Link Statistics</h2>
+    <div id="stats-container"></div>
+  </section>
+</div>
+<script src="assets/useradmin.js"></script>
+</body>
+</html>
