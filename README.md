@@ -1,36 +1,39 @@
 # Full Link Shortener System
 
 ## Overview
-This is a full-featured link shortener system with multi-domain support, admin dashboards, redirect verification, lifespan management, and more. The backend is built with Python Flask, and the frontend is pure HTML + JavaScript with CSS-styled inputs and buttons (no actual form or input tags).
 
-## Features
-- Shorten URLs with custom lifespan and multiple link generation
-- Multi-domain support (configurable ON/OFF)
-- Main admin dashboard with password protection to manage all shortened links
-- User admin dashboard for each shortened link with password to monitor visits
-- Redirect verification page to distinguish bots from humans
-- Dark/light mode toggle on the main landing page
-- No actual form or input tags; all UI elements are CSS styled divs/spans with JavaScript handling
-- Lifespan management with automatic expiration and deletion
-- Developer mode for local development or production use
+This project is a full link shortener system with backend API, frontend UI, admin dashboards, and environment-based configuration. It supports multiple domains, user admin, lifespan management, and bot detection.
 
-## Environment Variables (.env)
-- PORT: Port number for backend server
-- MAIN_DOMAIN: Main domain used for short links (e.g., `elitetradershubllc.com/shortlink`)
-- MAIN_ADMIN_PASSWORD: Password for main admin dashboard
-- MULTIPLE_DOMAINS: ON/OFF to enable multiple domains
-- DOMAIN_1, DOMAIN_2, DOMAIN_3, DOMAIN_4: Domains used when MULTIPLE_DOMAINS=ON
-- DEVELOPER_MODE: ON/OFF to indicate local development or production mode
+## Backend
 
-## Setup Instructions
+- Python Flask app in `backend/`
+- Uses SQLite for storage (`shortener.db`)
+- Environment variables configured in `.env`
+- Run backend with:
+  ```
+  cd backend
+  pip install -r requirements.txt
+  python app.py
+  ```
+- API base URL configured via `MAIN_DOMAIN` in `.env`
 
-1. Clone the repository or copy the files to your server.
+## Frontend
 
-2. Create a `.env` file in the `backend/` directory with the following content:
+- Static files in `frontend/`
+- Uses ES modules for JavaScript; script tags include `type="module"`
+- API base URL configured in `frontend/assets/config.js` via `DEVELOPER_MODE` flag
+- Serve frontend with any static server, e.g.:
+  ```
+  cd frontend
+  python3 -m http.server 8000
+  ```
+- Access UI at `http://localhost:8000/index.html`
+
+## Environment Configuration (`backend/.env`)
 
 ```
 PORT=5000
-MAIN_DOMAIN=elitetradershubllc.com/shortlink
+MAIN_DOMAIN=elitetradershubllc.com/shortner
 MAIN_ADMIN_PASSWORD=My%admin1_2@3
 MULTIPLE_DOMAINS=OFF
 DOMAIN_1=
@@ -40,35 +43,47 @@ DOMAIN_4=
 DEVELOPER_MODE=ON
 ```
 
-3. Install Python dependencies:
+- Set `DEVELOPER_MODE=ON` for debug mode, `OFF` for production.
 
-```bash
-cd backend
-pip install -r requirements.txt
+## NGINX Configuration
+
+Use the provided `nginx-linkshortener.conf` to serve the main website and link shortener under `/shortner` path.
+
+```nginx
+server {
+    listen 80;
+    server_name elitetradershubllc.com;
+
+    root /var/www/elitetradershubllc.com;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location /shortner/ {
+        alias /var/www/elitetradershubllc.com/shortner/;
+        index index.html;
+        try_files $uri $uri/ /index.html;
+    }
+
+    location /shortner/api/ {
+        proxy_pass http://127.0.0.1:5000/api/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
 ```
-
-4. Run the backend server inside a tmux session:
-
-```bash
-tmux new -s linkshortener
-python app.py
-```
-
-5. Serve the frontend files using any static file server or open `frontend/index.html` in your browser.
-
-## Usage
-
-- Use the main landing page to shorten URLs with options for user admin, lifespan, and multiple links.
-- Access the main admin dashboard at `/admin.html` with the main admin password.
-- Access user admin dashboards at `/useradmin.html` with the user password.
-- Redirects will go through a verification page to filter bots.
 
 ## Notes
 
-- The backend uses SQLite for storage.
-- Lifespan expiration and deletion are handled automatically.
-- Developer mode enables local testing features.
+- Update `frontend/assets/config.js` to toggle API base URL for local or production.
+- Ensure all frontend script tags use `type="module"` for ES module support.
+- Test locally by running backend on port 5000 and serving frontend on port 8000.
+- Adjust `.env` and NGINX config accordingly for production deployment.
 
-## License
+---
 
-MIT License
+This completes the full working code and configuration for your link shortener system. You can now deploy and test it as needed.
