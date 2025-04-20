@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Link Shortener</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/style.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</head>
+<body>
+<div id="app" class="container">
+  <header>
+    <h1>Link Shortener</h1>
+    <div id="mode-toggle" class="toggle-switch" role="switch" tabindex="0" aria-checked="false" aria-label="Toggle dark mode">
+      <span class="toggle-thumb"></span>
+    </div>
+  </header>
+  <section class="input-section">
+    <div id="url-input" class="input-like" contenteditable="true" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-placeholder="Enter Your Long URL here"></div>
+    <div class="checkbox-like" id="useradmin-checkbox" role="checkbox" tabindex="0" aria-checked="false">User Admin</div>
+    <div id="useradmin-password-container" class="input-section-hidden">
+      <div id="useradmin-password" class="input-like" contenteditable="true" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-placeholder="Choose Password for useradmin"></div>
+    </div>
+    <div class="checkbox-like" id="enable-lifespan-checkbox" role="checkbox" tabindex="0" aria-checked="false">Enable Lifespan</div>
+    <div id="lifespan-container" class="input-section-hidden">
+      <div class="dropdown-like" id="hours-dropdown" tabindex="0" aria-label="Hours">
+        <span>Hours</span>
+        <div class="dropdown-content">
+          <div data-value="0">0</div>
+          <div data-value="1">1</div>
+          <div data-value="2">2</div>
+          <div data-value="3">3</div>
+          <div data-value="4">4</div>
+          <div data-value="5">5</div>
+          <div data-value="6">6</div>
+          <div data-value="7">7</div>
+          <div data-value="8">8</div>
+          <div data-value="9">9</div>
+          <div data-value="10">10</div>
+          <div data-value="11">11</div>
+          <div data-value="12">12</div>
+        </div>
+      </div>
+      <div class="dropdown-like" id="days-dropdown" tabindex="0" aria-label="Days">
+        <span>Days</span>
+        <div class="dropdown-content">
+          <div data-value="0">0</div>
+          <div data-value="1">1</div>
+          <div data-value="2">2</div>
+          <div data-value="3">3</div>
+          <div data-value="4">4</div>
+          <div data-value="5">5</div>
+          <div data-value="6">6</div>
+          <div data-value="7">7</div>
+          <div data-value="8">8</div>
+          <div data-value="9">9</div>
+          <div data-value="10">10</div>
+          <div data-value="11">11</div>
+          <div data-value="12">12</div>
+          <div data-value="13">13</div>
+          <div data-value="14">14</div>
+          <div data-value="15">15</div>
+          <div data-value="16">16</div>
+          <div data-value="17">17</div>
+          <div data-value="18">18</div>
+          <div data-value="19">19</div>
+          <div data-value="20">20</div>
+          <div data-value="21">21</div>
+          <div data-value="22">22</div>
+          <div data-value="23">23</div>
+          <div data-value="24">24</div>
+        </div>
+      </div>
+      <div class="dropdown-like" id="weeks-dropdown" tabindex="0" aria-label="Weeks">
+        <span>Weeks</span>
+        <div class="dropdown-content">
+          <div data-value="0">0</div>
+          <div data-value="1">1</div>
+          <div data-value="2">2</div>
+          <div data-value="3">3</div>
+          <div data-value="4">4</div>
+          <div data-value="5">5</div>
+          <div data-value="6">6</div>
+          <div data-value="7">7</div>
+          <div data-value="8">8</div>
+          <div data-value="9">9</div>
+          <div data-value="10">10</div>
+        </div>
+      </div>
+    </div>
+    <div class="checkbox-like" id="multiple-links-checkbox" role="checkbox" tabindex="0" aria-checked="false">Generate Multiple Links</div>
+    <div id="multiple-links-count-container" class="input-section-hidden">
+      <div id="multiple-links-count" class="input-like" contenteditable="true" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-placeholder="How many links do you want for your url"></div>
+    </div>
+    <div id="generate-button" class="button-like">Generate</div>
+    <div id="generate-again-button" class="button-like input-section-hidden">Generate Again</div>
+    <textarea id="output-textarea" readonly></textarea>
+    <div id="copy-button" class="button-like">Copy</div>
+  </section>
+</div>
+<script src="assets/main.js"></script>
+</body>
+</html>
